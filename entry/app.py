@@ -18,11 +18,12 @@ import json
 
 from connect4 import PLAYER1, PLAYER2, Connect4
 
+
 async def handler(websocket):
     # init a game
     game = Connect4()
 
-    #players take turns using the browser
+    # players take turns using the browser
     turns = itertools.cycle([PLAYER1, PLAYER2])
     player = next(turns)
 
@@ -33,7 +34,7 @@ async def handler(websocket):
         column = event["column"]
 
         try:
-            #play the move
+            # play the move
             row = game.play(player, column)
         except RuntimeError as e:
             # send error event if the move illegal
@@ -62,8 +63,9 @@ async def handler(websocket):
             }
             await websocket.send(json.dumps(event))
 
-        #alternate turns.
-        player =next(turns)
+        # alternate turns.
+        player = next(turns)
+
 
 async def main():
     async with websockets.serve(handler, "", 8001):
