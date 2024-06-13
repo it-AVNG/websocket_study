@@ -1,6 +1,7 @@
 '''
 Here’s a WebSocket server.
-It receives a name from the client, sends a greeting, and closes the connection.
+It receives a name from the client, 
+sends a greeting, and closes the connection.
 '''
 
 import asyncio
